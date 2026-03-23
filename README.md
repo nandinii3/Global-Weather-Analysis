@@ -47,8 +47,8 @@ The real improvement came when I added lag features the previous day's temperatu
 Clone the repo and install dependencies:
 
 ```bash
-git clone https://github.com/nandinii3/Global-Weather_Analysis
-cd Global-Weather_Analysis
+git clone https://github.com/nandinii3/Global-Weather-Analysis
+cd Global-Weather-Analysis
 pip install -r requirements.txt
 ```
 
