@@ -9,15 +9,15 @@ I kept the scope realistic and focused on doing a few things well rather than ru
 
 **Cleaning the data first.** The raw dataset had empty strings and whitespace values scattered across columns. I replaced those with NaN, dropped any fully empty rows or columns, and saved a clean version before doing anything else. From there I filled remaining nulls with column medians for numeric features and the mode for categoricals.
 
-**Outlier treatment using IQR.** For temperature, precipitation, wind speed, humidity and pressure I calculated the interquartile range and clipped values at 1.5×IQR. I chose clipping over dropping — this way I kept the sample size while removing distortion from extreme readings.
+**Outlier treatment using IQR.** For temperature, precipitation, wind speed, humidity and pressure I calculated the interquartile range and clipped values at 1.5×IQR. I chose clipping over dropping  this way I kept the sample size while removing distortion from extreme readings.
 
-**EDA to understand the data.** Before jumping into models I spent time visualizing things: global temperature over time, monthly precipitation patterns, how different features correlate with each other, and how temperature varies across countries. A few things stood out — humidity and temperature have a clear negative relationship, and `feels_like_celsius` tracks `temperature_celsius` almost perfectly, which makes sense.
+**EDA to understand the data.** Before jumping into models I spent time visualizing things: global temperature over time, monthly precipitation patterns, how different features correlate with each other, and how temperature varies across countries. A few things stood out  humidity and temperature have a clear negative relationship, and `feels_like_celsius` tracks `temperature_celsius` almost perfectly, which makes sense.
 
 **Building the forecasting model.** I aggregated temperature to a daily global average and used that as the time series. My first attempt with Linear Regression and basic features (month, day of year, time index) gave an MAE of around 8°C which wasn't great. Random Forest on the same features improved it to about 1.7°C.
 
 The real improvement came when I added lag features the previous day's temperature, the 7-day lag, 14-day lag, and 7/30-day rolling averages. With those added the Random Forest came down to **MAE: 0.93°C and RMSE: 1.00°C**, which I was pretty happy with. Predicting within 1°C on a global average is solid.
 
-**A note on R².** It came out negative even with the improved model. This isn't a bug — it's a known issue with R² on time series where the test variance is low. When the signal is already stable, beating a simple mean prediction on R² is genuinely hard. MAE and RMSE are more meaningful metrics for this kind of problem and both look good.
+**A note on R².** It came out negative even with the improved model. This isn't a bug  it's a known issue with R² on time series where the test variance is low. When the signal is already stable, beating a simple mean prediction on R² is genuinely hard. MAE and RMSE are more meaningful metrics for this kind of problem and both look good.
 
 ---
 
@@ -35,7 +35,7 @@ The real improvement came when I added lag features the previous day's temperatu
 
 ```
 ├── GlobalWeatherRepository1.csv   # cleaned dataset
-├── weather_forecasting.ipynb      # main notebook
+├── GlobalWeatherRepository1.ipynb      # main notebook
 ├── requirements.txt
 └── README.md
 ```
@@ -52,7 +52,7 @@ cd Global-Weather_Analysis
 pip install -r requirements.txt
 ```
 
-Or just open the notebook directly in Google Colab — it's self-contained and runs top to bottom without any setup beyond uploading the CSV.
+Or just open the notebook directly in Google Colab, it's self-contained and runs top to bottom without any setup beyond uploading the CSV.
 
 ---
 
@@ -70,7 +70,7 @@ scikit-learn
 
 ## Dataset
 
-Global Weather Repository from Kaggle — daily weather readings for cities worldwide.
+Global Weather Repository from Kaggle daily weather readings for cities worldwide.
 https://www.kaggle.com/datasets/nelgiriyewithana/global-weather-repository
 
 ---
