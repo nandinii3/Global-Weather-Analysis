@@ -15,7 +15,7 @@ I kept the scope realistic and focused on doing a few things well rather than ru
 
 **Building the forecasting model.** I aggregated temperature to a daily global average and used that as the time series. My first attempt with Linear Regression and basic features (month, day of year, time index) gave an MAE of around 8°C which wasn't great. Random Forest on the same features improved it to about 1.7°C.
 
-The real improvement came when I added lag features — the previous day's temperature, the 7-day lag, 14-day lag, and 7/30-day rolling averages. With those added the Random Forest came down to **MAE: 0.93°C and RMSE: 1.00°C**, which I was pretty happy with. Predicting within 1°C on a global average is solid.
+The real improvement came when I added lag features the previous day's temperature, the 7-day lag, 14-day lag, and 7/30-day rolling averages. With those added the Random Forest came down to **MAE: 0.93°C and RMSE: 1.00°C**, which I was pretty happy with. Predicting within 1°C on a global average is solid.
 
 **A note on R².** It came out negative even with the improved model. This isn't a bug — it's a known issue with R² on time series where the test variance is low. When the signal is already stable, beating a simple mean prediction on R² is genuinely hard. MAE and RMSE are more meaningful metrics for this kind of problem and both look good.
 
@@ -47,8 +47,8 @@ The real improvement came when I added lag features — the previous day's tempe
 Clone the repo and install dependencies:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/weather-forecasting
-cd weather-forecasting
+git clone https://github.com/nandinii3/Global-Weather_Analysis
+cd Global-Weather_Analysis
 pip install -r requirements.txt
 ```
 
